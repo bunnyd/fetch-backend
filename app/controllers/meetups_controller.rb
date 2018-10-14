@@ -1,5 +1,6 @@
 class MeetupsController < ApplicationController
   def index
+    render json: Meetup.includes(:owners), include: ['owners']
   end
 
   def show
