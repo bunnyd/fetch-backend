@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2018_10_11_161446) do
     t.string "address"
     t.integer "zip_code"
     t.string "location_name"
-    t.time "time"
+    t.string "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

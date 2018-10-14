@@ -64,5 +64,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'active_model_serializers'
 
 gem 'rack-cors'
+gem 'rest-client'
 
 gem 'jwt'

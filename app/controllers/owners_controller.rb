@@ -35,12 +35,16 @@ class OwnersController < ApplicationController
   end
 
   def searchDogParks
+
     yelpBaseURL = "https://api.yelp.com/v3/businesses/search?"
     yelpAPIKey = "DbV0IdA1MLH2cP5hYyf2I842erL0NFPkP8IT__tcVoEmyhXSgm8XKfU6bVQuYCqlEWUuoOGVi81SDqURqzOGGglcONPgZ_bNdplF1ZxPJ2AmvzYEbdz1Okmk3Im7W3Yx"
     yelpURL = "#{yelpBaseURL}term=dog_park&location=#{params[:zip_code]}"
+
     response = RestClient.get(yelpURL, {'Authorization' => "Bearer #{yelpAPIKey}"  })
 
     result = JSON.parse(response.body)
+    # puts "AHHHH HIT"
+    # byebug
 
     render json: result
   end
@@ -48,7 +52,7 @@ class OwnersController < ApplicationController
   def searchDogRestaurants
     yelpBaseURL = "https://api.yelp.com/v3/businesses/search?"
     yelpAPIKey = "DbV0IdA1MLH2cP5hYyf2I842erL0NFPkP8IT__tcVoEmyhXSgm8XKfU6bVQuYCqlEWUuoOGVi81SDqURqzOGGglcONPgZ_bNdplF1ZxPJ2AmvzYEbdz1Okmk3Im7W3Yx"
-    yelpURL = "#{yelpBaseURL}term=dog friendly restaurants&location=#{params[:zip_code]}"
+    yelpURL = "#{yelpBaseURL}term=dog_friendly_restaurants&location=#{params[:zip_code]}"
     response = RestClient.get(yelpURL, {'Authorization' => "Bearer #{yelpAPIKey}"  })
 
     result = JSON.parse(response.body)

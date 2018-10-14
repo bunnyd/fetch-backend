@@ -5,7 +5,7 @@ class CreateMeetups < ActiveRecord::Migration[5.2]
       t.string :address
       t.integer :zip_code
       t.string :location_name
-      t.time :time
+      t.string :time
 
       t.timestamps
     end
