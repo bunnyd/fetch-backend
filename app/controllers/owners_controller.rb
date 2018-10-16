@@ -6,6 +6,8 @@ class OwnersController < ApplicationController
   end
 
   def show
+    owner = Owner.where("id=?",params[:id])
+    render json: owner
   end
 
   def new
@@ -28,11 +30,14 @@ class OwnersController < ApplicationController
   end
 
   def update
-    owner = Owner.find(params[:id])
-    owner.update(owner_params)
 
+    owner = Owner.find(params[:id])
+    meetup = Meetup.find(params[:meetup_ids][0][:id])
+    owner.meetups.push(meetup)
+    owner.save
     render json: owner
   end
+
 
   def searchDogParks
 
@@ -59,9 +64,10 @@ class OwnersController < ApplicationController
 
     render json: result
   end
-
+# dogs_attributes:[[ :name, :age, :breed, :size, :sex, :short_bio, :picture_url]],
   private
   def owner_params
-    params.require(:owner).permit(:first_name, :last_name, :picture_url, :zip_code, dogs_attributes:[[ :name, :age, :breed, :size, :sex, :short_bio, :picture_url]])
+    params.require(:owner).permit(:first_name, :last_name, :picture_url, :zip_code,
+    meetup_ids: [] )
   end
 end

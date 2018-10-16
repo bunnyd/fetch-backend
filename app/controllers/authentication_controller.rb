@@ -13,6 +13,11 @@ class AuthenticationController < ApplicationController
     end
   end
 
+  def a
+    token = decoded_token
+    render json: { owner: current_owner}
+  end
+
   private
 
   def owner_login_params

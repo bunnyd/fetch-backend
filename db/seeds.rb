@@ -9,9 +9,9 @@
 # --------------------
 # ------ OWNERS ------
 # --------------------
-nancy = Owner.create(first_name: "Nancy", last_name: "Do", picture_url: "https://miro.medium.com/fit/c/240/240/1*eB2VBCruYQsHvHp25d4BrA.jpeg", zip_code: "77377", email: "nancy@example.com", password: "password123")
+nancy = Owner.create(first_name: "Nancy", last_name: "Do", title: "Junior Full-Stack Developer", picture_url: "https://miro.medium.com/fit/c/240/240/1*eB2VBCruYQsHvHp25d4BrA.jpeg", zip_code: "77377", email: "nancy@example.com", password: "password123")
 
-john = Owner.create(first_name: "John", last_name: "Nguyen", zip_code: "77002", email: "john@example.com", password: "password123")
+john = Owner.create(first_name: "John", last_name: "Nguyen", title: "Firefighter", zip_code: "77002", email: "john@example.com", password: "password123")
 
 # --------------------
 # ------ DOGS --------

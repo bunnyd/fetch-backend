@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   post '/login', to: 'authentication#create'
   post '/search-dog-park', to: 'owners#searchDogParks'
   post '/search-dog-restaurants', to: 'owners#searchDogRestaurants'
+  post '/authenticate', to: 'authentication#a'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

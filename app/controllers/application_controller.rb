@@ -27,7 +27,7 @@ class ApplicationController < ActionController::API
     if decoded_token
       owner_id = decoded_token[0]['owner_id']
       @owner = Owner.find_by(id: owner_id)
-    end
+  end
 end
 
   def logged_in?

@@ -1,3 +1,2 @@
 class DogSerializer < ActiveModel::Serializer
-  attributes :id
-end
+  attributes :id, :location_name, :address, :date, :time, :zip_code

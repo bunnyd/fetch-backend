@@ -65,5 +65,6 @@ gem 'active_model_serializers'
 
 gem 'rack-cors'
 gem 'rest-client'
+gem 'awesome_rails_console'
 
 gem 'jwt'
