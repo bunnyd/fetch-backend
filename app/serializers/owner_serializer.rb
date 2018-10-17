@@ -1,5 +1,5 @@
 class OwnerSerializer < ActiveModel::Serializer
-  attributes :id, :first_name, :last_name, :email, :zip_code, :picture_url, :dogs, :meetups
+  attributes :id, :first_name, :title, :last_name, :email, :zip_code, :picture_url, :dogs, :meetups
   def dogs
     self.object.dogs.map do |dog|
       {
@@ -8,6 +8,7 @@ class OwnerSerializer < ActiveModel::Serializer
         breed: dog.breed,
         size: dog.size,
         sex: dog.sex,
+        age: dog.age,
         short_bio: dog.short_bio,
         picture_url: dog.picture_url
       }
@@ -19,7 +20,10 @@ class OwnerSerializer < ActiveModel::Serializer
       location_name: meetup.location_name,
       address: meetup.address,
       zip_code: meetup.zip_code,
-      time: meetup.time
+      time: meetup.time,
+      picture_url: meetup.picture_url,
+      url:
+      meetup.url
     }
     end
   end

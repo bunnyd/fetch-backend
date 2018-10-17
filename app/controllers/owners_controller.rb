@@ -67,7 +67,7 @@ class OwnersController < ApplicationController
 # dogs_attributes:[[ :name, :age, :breed, :size, :sex, :short_bio, :picture_url]],
   private
   def owner_params
-    params.require(:owner).permit(:first_name, :last_name, :picture_url, :zip_code,
+    params.require(:owner).permit(:first_name, :last_name, :title, :picture_url, :zip_code,
     meetup_ids: [] )
   end
 end

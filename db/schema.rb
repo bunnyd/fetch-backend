@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 2018_10_11_161446) do
     t.integer "zip_code"
     t.string "location_name"
     t.string "time"
+    t.string "url"
+    t.string "picture_url", default: "https://www.mountaineers.org/images/placeholder-images/RoutesPlacesDefaultImage.jpg"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

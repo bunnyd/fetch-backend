@@ -27,6 +27,7 @@ class ApplicationController < ActionController::API
     if decoded_token
       owner_id = decoded_token[0]['owner_id']
       @owner = Owner.find_by(id: owner_id)
+      OwnerSerializer.new(@owner)
   end
 end
 
