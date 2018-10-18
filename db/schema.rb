@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2018_10_11_161446) do
   create_table "owners", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.string "title"
+    t.string "title", default: ""
     t.string "picture_url", default: "https://catking.in/wp-content/uploads/2017/02/default-profile-1.png"
     t.integer "zip_code"
     t.string "email"

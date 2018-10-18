@@ -17,13 +17,14 @@ class OwnersController < ApplicationController
   end
 
   def create
+    # debugger
+
     owner = Owner.new(owner_params)
 
     if owner.valid?
       owner.save
       session[:owner_id] = owner.id
-
-      render json: {success: true}
+      render json: owner
     else
       render json: {errors: owner.errors}
     end
@@ -67,7 +68,7 @@ class OwnersController < ApplicationController
 # dogs_attributes:[[ :name, :age, :breed, :size, :sex, :short_bio, :picture_url]],
   private
   def owner_params
-    params.require(:owner).permit(:first_name, :last_name, :title, :picture_url, :zip_code,
+    params.require(:owner).permit(:first_name, :last_name, :email, :password, :title, :picture_url, :zip_code,
     meetup_ids: [] )
   end
 end
