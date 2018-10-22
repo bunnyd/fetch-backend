@@ -7,7 +7,6 @@ class CreateDogs < ActiveRecord::Migration[5.2]
       t.string :size, default: "N/A"
       t.string :sex
       t.text :short_bio
-      t.string :picture_url, default: "http://www.dog-find.com/img/default-image-450.jpg"
       t.belongs_to :owner, foreign_key: true
 
       t.timestamps

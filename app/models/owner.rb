@@ -10,6 +10,8 @@ class Owner < ApplicationRecord
 
   accepts_nested_attributes_for :meetups
 
+  has_one_attached :image
+
   def full_name
     "#{first_name} #{last_name}"
   end

@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_11_161446) do
+ActiveRecord::Schema.define(version: 2018_10_22_151042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "dogs", force: :cascade do |t|
     t.string "name"
@@ -22,7 +43,6 @@ ActiveRecord::Schema.define(version: 2018_10_11_161446) do
     t.string "size", default: "N/A"
     t.string "sex"
     t.text "short_bio"
-    t.string "picture_url", default: "http://www.dog-find.com/img/default-image-450.jpg"
     t.bigint "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -35,8 +55,8 @@ ActiveRecord::Schema.define(version: 2018_10_11_161446) do
     t.integer "zip_code"
     t.string "location_name"
     t.string "time"
-    t.string "url"
     t.string "picture_url", default: "https://www.mountaineers.org/images/placeholder-images/RoutesPlacesDefaultImage.jpg"
+    t.string "url", default: "https://www.google.com"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -54,7 +74,6 @@ ActiveRecord::Schema.define(version: 2018_10_11_161446) do
     t.string "first_name"
     t.string "last_name"
     t.string "title", default: ""
-    t.string "picture_url", default: "https://catking.in/wp-content/uploads/2017/02/default-profile-1.png"
     t.integer "zip_code"
     t.string "email"
     t.string "password_digest"

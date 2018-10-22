@@ -1,5 +1,5 @@
 class MeetupsController < ApplicationController
-  before_action :meetup_params, only: :create
+  # before_action :meetup_params, only: :create
 
   def index
     render json: Meetup.all

@@ -1,35 +1,42 @@
 class OwnersController < ApplicationController
-  before_action :owner_params, only: [:create]
+  # before_action :owner_params, only: [:create]
+  # skip_before_action :authorized, only: [:create]
+
 
   def index
-    render json: Owner.all
+    @owners = Owner.all
+    @image = get_image_url
+
+    render json: @owners, get_image_url: @image
   end
 
   def show
-    owner = Owner.where("id=?",params[:id])
-    render json: owner
+    @owner = Owner.where("id=?",params[:id])
+    @image = get_image_url
+
+    render json: @owner, get_image_url: @image
   end
 
   def create
+    @owner = Owner.new(owner_params)
     # debugger
-
-    owner = Owner.new(owner_params)
-
-    if owner.valid?
-      owner.save
-      render json: owner
+    if @owner.valid?
+      @owner.save
+      @token = get_token
+      @image = get_image_url
+      render json: @owner, get_token: @token, get_image_url: @image
     else
-      render json: {errors: owner.errors}
+      render json: {errors: @owner.errors}
     end
   end
 
   def update
 
-    owner = Owner.find(params[:id])
+    @owner = Owner.find(params[:id])
     meetup = Meetup.find(params[:meetup_ids][0][:id])
-    owner.meetups.push(meetup)
-    owner.save
-    render json: owner
+    @owner.meetups.push(meetup)
+    @owner.save
+    render json: @owner
   end
 
 
@@ -57,10 +64,11 @@ class OwnersController < ApplicationController
 
     render json: result
   end
-# dogs_attributes:[[ :name, :age, :breed, :size, :sex, :short_bio, :picture_url]],
+
   private
+
   def owner_params
-    params.require(:owner).permit(:first_name, :last_name, :email, :password, :title, :picture_url, :zip_code,
+    params.require(:owner).permit(:first_name, :last_name, :email, :password, :title, :zip_code, :image,
     meetup_ids: [])
   end
 end

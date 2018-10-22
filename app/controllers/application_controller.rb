@@ -1,5 +1,29 @@
 class ApplicationController < ActionController::API
   # before_action :authorized
+  def get_image_url
+  # This method `get_image_url` returns a callback or LAMBDA that
+  # takes in an image/attachment, tries to return the URL for the
+  # image, and if it runs into an error, returns an empty string
+  @cb = -> (image) do
+    begin
+      url_for(image)
+    rescue Module::DelegationError
+      ""
+    end
+  end
+  @cb
+end
+
+def get_token
+  @cb = -> (id) do
+    begin
+      encode_token({user_id: id})
+    rescue Module::DelegationError
+      ''
+    end
+  end
+  @cb
+end
 
   def encode_token(payload)
     # should store secret in env variable
@@ -23,11 +47,12 @@ class ApplicationController < ActionController::API
     end
   end
 
+
+
   def current_owner
     if decoded_token
-      owner_id = decoded_token[0]['owner_id']
+      owner_id = decoded_token[0]['user_id']
       @owner = Owner.find_by(id: owner_id)
-      OwnerSerializer.new(@owner)
   end
 end
 
@@ -38,4 +63,6 @@ end
   def authorized
     render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
   end
+
+
 end
