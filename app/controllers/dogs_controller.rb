@@ -1,6 +1,4 @@
 class DogsController < ApplicationController
-  # before_action :dog_params, only: :create
-
   def index
     @dogs = Dog.all
     @image = get_image_url
@@ -16,12 +14,14 @@ class DogsController < ApplicationController
   end
 
   def create
+    # debugger
     @dog = Dog.new(dog_params)
     # debugger
     if @dog.valid?
       @dog.save
+      @owner = Owner.find_by(id: params[:owner_id])
       @image = get_image_url
-      render json: @dog
+      render json: @owner,  get_image_url: @image
     else
       render json: {errors: @dog.errors}
     end
