@@ -7,8 +7,7 @@ class OwnerSerializer < ActiveModel::Serializer
     # Inside of here, we're accessing the `get_image_url` key-value pair
     # that we passed to the serializer and `call`ing the callback with
     # the object's actual image object
-    @image_cb = instance_options[:get_image_url]
-    @image_cb.call(@object.image)
+    instance_options[:get_image_url].call(@object.image)
   end
 
   def jwt
@@ -19,11 +18,12 @@ class OwnerSerializer < ActiveModel::Serializer
 
   def dogs
     @object.dogs.map do |dog|
-      DogSerializer.new(dog, get_image_url: @image_cb)
+      DogSerializer.new(dog, get_image_url: instance_options[:get_image_url])
     end
   end
 
   def meetups
+    return if instance_options[:meetups] == ""
     self.object.meetups.map do |meetup| {
       date: meetup.date,
       location_name: meetup.location_name,
