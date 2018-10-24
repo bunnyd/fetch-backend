@@ -25,6 +25,7 @@ class OwnerSerializer < ActiveModel::Serializer
   def meetups
     return if instance_options[:meetups] == ""
     self.object.meetups.map do |meetup| {
+      id: meetup.id,
       date: meetup.date,
       location_name: meetup.location_name,
       address: meetup.address,

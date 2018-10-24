@@ -19,7 +19,15 @@ class MeetupsController < ApplicationController
   end
 
   def show
+    @image = get_image_url
+    @meetup = Meetup.find(params[:id])
+    @meetup.owners.each do |owner|
+      @dogs = owner.dogs
+      @owners = []
+      @owners << OwnerSerializer.new(owner, get_image_url: @image, dogs: @dogs)
+    end
 
+    render json: @meetup, owners: @owners, dogs: @dogs, get_image_url: @image
   end
 
   def edit
