@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   post '/login', to: 'authentication#create'
   post '/search-dog-park', to: 'owners#searchDogParks'
   post '/search-dog-restaurants', to: 'owners#searchDogRestaurants'
+  post '/search-petfinder-dogs', to: 'owners#searchPetFinderDogs'
+
   post '/authenticate', to: 'authentication#a'
 
 

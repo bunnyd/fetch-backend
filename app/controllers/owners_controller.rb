@@ -64,6 +64,21 @@ class OwnersController < ApplicationController
     render json: result
   end
 
+  def searchPetFinderDogs
+
+    petFinderKey = "cfae35961a8762bd9594e3cff26156d1"
+
+    petFinderBaseURL = "http://api.petfinder.com/pet.find?format=json&animal=dog&key=#{petFinderKey}&location="
+
+    petFinderURL = "#{petFinderBaseURL}#{params[:zip_code]}"
+
+    response = RestClient.get(petFinderURL)
+
+    result = JSON.parse(response.body)
+
+    render json: result
+  end
+
   private
 
   def owner_params
