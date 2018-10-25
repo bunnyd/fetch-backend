@@ -21,7 +21,7 @@ class DogsController < ApplicationController
       @dog.save
       @owner = Owner.find_by(id: params[:dog][:owner_id])
       @image = get_image_url
-      
+
       render json: @owner,  get_image_url: @image
     else
       render json: {errors: @dog.errors}
