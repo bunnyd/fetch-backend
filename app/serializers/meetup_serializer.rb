@@ -8,9 +8,10 @@ class MeetupSerializer < ActiveModel::Serializer
 
     @image = instance_options[:get_image_url]
 
-    @owners.map do |owner|
+    # @owners.map do |owner|
+  # end
+
       return instance_options
-    end
   end
 
   def dogs

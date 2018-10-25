@@ -19,11 +19,12 @@ class MeetupsController < ApplicationController
   end
 
   def show
+    # debugger
     @image = get_image_url
     @meetup = Meetup.find(params[:id])
+    @owners = []
     @meetup.owners.each do |owner|
       @dogs = owner.dogs
-      @owners = []
       @owners << OwnerSerializer.new(owner, get_image_url: @image, dogs: @dogs)
     end
 
