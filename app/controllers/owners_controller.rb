@@ -19,6 +19,7 @@ class OwnersController < ApplicationController
 
   def create
     @owner = Owner.new(owner_params)
+    debugger
     if @owner.valid?
       @owner.save
       @token = get_token
